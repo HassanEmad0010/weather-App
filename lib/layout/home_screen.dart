@@ -5,7 +5,7 @@ import '../modules/search_page.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext conwdtext) {
 
    return Scaffold(
      backgroundColor: Colors.amber,
@@ -14,8 +14,8 @@ class HomeScreen extends StatelessWidget{
        actions: [
          IconButton(onPressed: (){
 
-           Navigator.push(context,MaterialPageRoute(
-           builder: (context){
+           Navigator.push(conwdtext,MaterialPageRoute(
+           builder: (coegntext){
              return SearchPage();
    },
 

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/componants/shared_componant/componant.dart';
+import 'package:weather_app/models/weathe_model.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -24,7 +26,19 @@ class SearchPage extends StatelessWidget {
               prefixIconColor: Colors.indigo,
               fillColor: Colors.white60,
               prefixIcon: Icon(Icons.search_sharp),
+
             ),
+
+            onFieldSubmitted: (value)async{
+
+
+              WeatherModel weather =await  weatherService(value);
+
+              print ("weather from search page ${weather.toString()} ");
+
+
+
+            },
           ),
         ],
       ),
