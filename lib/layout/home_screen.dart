@@ -10,65 +10,126 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext conwdtext) {
     WeatherCubit cubit = WeatherCubit.get(conwdtext);
 
-    return BlocListener<WeatherCubit,WeatherState>(
-      listener: (BuildContext context, state) {
+    return  Scaffold(
+      backgroundColor: Colors.orangeAccent,
+      appBar: AppBar(
+       title:const Text("Weather Application",style: TextStyle(letterSpacing: 2.67),),
+    centerTitle: true,
+    titleSpacing: 3,
+
+    actions: [
+    IconButton(
+      iconSize: 37,
+    color: Colors.yellowAccent,
+    onPressed: () {
+      Navigator.push(
+        conwdtext,
+        MaterialPageRoute(
+          builder: (coegntext) {
+            return SearchPage();
+          },
+        ),
+      );
+    },
+    icon: const Icon(Icons.search_outlined),
+    )
+    ],
+    ),
+      body:
+        BlocBuilder<WeatherCubit,WeatherState>(
+          builder: (conwdtext,state) {
+           if(state is WeatherFailedState) {
+             return Container(color: Colors.cyan, child: const Text("Error No data"),);
+           }
+           else if (state is WeatherGetState)
+             {
+              return Center(
+                 child: Column(
+                   mainAxisSize: MainAxisSize.min,
+                   //  mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     Text(
+                       "${cubit.cityName}",
+                       style:const TextStyle(fontSize: 40),
+                     ),
+                     Text("${cubit.temp}", style: TextStyle(fontSize: 40)),
+
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         const Text("Updated: ", style: TextStyle(fontSize: 20)),
+                         Text("${cubit.date}", style: TextStyle(fontSize: 20)),
+                       ],
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         const Icon(
+                           Icons.cloud_outlined,
+                           size: 80,
+                         ),
+                         Text("  ${cubit.minTemp} - ", style: TextStyle(fontSize: 30)),
+                         Text("${cubit.maxTemp}", style: TextStyle(fontSize: 40)),
+                       ],
+                     ),
+                     Text("${cubit.weatherState}", style: TextStyle(fontSize: 40)),
+                   ],
+                 ),
+               );
+             }
+
+           else if (state is WeatherLoadingState)
+           {
+             return Scaffold(
+
+               body: Center(child: Container(child: const CircularProgressIndicator(strokeWidth: 13,color: Colors.blueAccent),)),
+             );
+           }
+           else
+           {
+             return Scaffold(
+               backgroundColor: Colors.teal,
+
+               body: Center(child:
+               SizedBox(width: double.infinity,
+                 height: 300,
+                // color: Colors.cyan,
+                 child:
+                 Center(child:
+                 Column(
+                   children: [
+                    const Text ("      No Data 😑 \n \n Search for a City ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.white),),
+                     IconButton(
+                       iconSize: 90,
+                       color: Colors.yellowAccent,
+                       onPressed: () {
+                         Navigator.push(
+                           conwdtext,
+                           MaterialPageRoute(
+                             builder: (coegntext) {
+                               return SearchPage();
+                             },
+                           ),
+                         );
+                       },
+                       icon: const Icon(Icons.search_outlined),
+                     ),
+
+                   ],
+                 )),)),
+             );
+           }
 
 
-      },
-      child: Scaffold(
-        backgroundColor: Colors.amber,
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  conwdtext,
-                  MaterialPageRoute(
-                    builder: (coegntext) {
-                      return SearchPage();
-                    },
-                  ),
-                );
-              },
-              icon: const Icon(Icons.search_outlined),
-            )
-          ],
+
+          }
         ),
-        
-        
-        
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            //  mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "${cubit.cityName}",
-                style: TextStyle(fontSize: 40),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Updated", style: TextStyle(fontSize: 20)),
-                  Text("${cubit.date}", style: TextStyle(fontSize: 20)),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.cloud_outlined,
-                    size: 80,
-                  ),
-                  Text("${cubit.minTemp}^", style: TextStyle(fontSize: 40)),
-                  Text("${cubit.maxTemp}", style: TextStyle(fontSize: 20)),
-                ],
-              ),
-              Text("${cubit.weatherState}", style: TextStyle(fontSize: 40)),
-            ],
-          ),
-        ),
-      ),
+
     );
+
+
+
+
+
   }
 }

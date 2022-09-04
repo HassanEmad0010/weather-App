@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 
       create: (BuildContext context) {  return WeatherCubit();},
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
 
 
         title: 'Flutter Demo',

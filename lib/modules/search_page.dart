@@ -8,6 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchPage extends StatelessWidget {
 
+  var textEditingController =TextEditingController();
+
+  var textFormKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherCubit,WeatherState>(
@@ -16,37 +20,76 @@ class SearchPage extends StatelessWidget {
 
       },
       builder:(context,state)=> Scaffold(
-        backgroundColor: Colors.cyan,
-        appBar: AppBar(),
+        backgroundColor: Colors.lightBlue,
+        appBar: AppBar(
+          title:const Text("Weather Application",style: TextStyle(letterSpacing: 2.67),),
+          centerTitle: true,
+          titleSpacing: 3,
+
+
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Enter your City",style: TextStyle(fontSize: 30,color: Colors.white60,wordSpacing: 4,fontWeight: FontWeight.bold),),
-            TextFormField(
-              decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 3,
-                    color: Colors.indigo,
+           const Spacer(flex: 8,),
+            const Text("Enter a City",style: TextStyle(fontSize: 30,color: Colors.white60,wordSpacing: 4,fontWeight: FontWeight.bold),),
+            const Spacer(flex: 1,),
+           Form(
+              key: textFormKey,
+              child: TextFormField(
+
+                controller: textEditingController,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "title Cant be empty";
+                    }
+                    return null;
+                  },
+
+                  decoration: InputDecoration(
+                    labelText: "City Name",
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      gapPadding: 10,
+                      borderRadius:  BorderRadius.circular( 70.0),
+                      borderSide:  const BorderSide(
+                        width: 70,
+                        color: Colors.yellowAccent,
+                      ),
+                    ),
+                    //fillColor: Colors.green
                   ),
-                ),
-                prefixIconColor: Colors.indigo,
-                fillColor: Colors.white60,
-                prefixIcon: Icon(Icons.search_sharp),
+
+               /* decoration: const InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 3,
+                      color: Colors.indigo,
+                    ),
+                  ),
+                  prefixIconColor: Colors.indigo,
+                  fillColor: Colors.white60,
+                  prefixIcon: Icon(Icons.search_sharp),
+
+                ),*/
+
+                onFieldSubmitted: (value) {
+                  //await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
+                  if (textFormKey.currentState!.validate()) {
+                    WeatherCubit.get(context).getWeather(cityName: value).then((
+                        value) {
+                      Navigator.pop(context);
+                    }).catchError((e) {
+                      print("error $e");
+                    });
+                  }
+
+                }
+
 
               ),
-
-              onFieldSubmitted: (value){
-                //await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
-                WeatherCubit.get(context).getWeather(cityName: value).then((value) {
-
-                  Navigator.pop(context);
-
-                });
-                },
-
-
             ),
+            const   Spacer(flex: 9,),
           ],
         ),
       ),
