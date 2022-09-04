@@ -9,23 +9,27 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   WeatherCubit():super(WeatherInitState());
 
+ static WeatherCubit get (context)=>BlocProvider.of(context);
+
   String? date;
   double? temp;
   double? maxTemp;
   double? minTemp;
   String? weatherState;
+  String? cityName;
 
 
 
   Future<void> getWeather ({required cityName}) async{
     WeatherModel weather =await  weatherService(cityName);
-    print ("weather from search page ${weather.toString()} ");
+    print ("weather from Cubit page ${weather.toString()} ");
     minTemp = weather.minTemp;
     maxTemp= weather.maxTemp;
     temp = weather.temp;
     date= weather.date;
     weatherState= weather.weatherStateName;
-    emit(WeatherSuccessfulState());
+    this.cityName=cityName;
+    emit(WeatherGetState());
 
   print ("date is $date");
   print ("max temp is $maxTemp ");

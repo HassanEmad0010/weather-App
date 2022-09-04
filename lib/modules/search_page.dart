@@ -36,8 +36,13 @@ class SearchPage extends StatelessWidget {
 
               ),
 
-              onFieldSubmitted: (value)async{
-                await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
+              onFieldSubmitted: (value){
+                //await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
+                WeatherCubit.get(context).getWeather(cityName: value).then((value) {
+
+                  Navigator.pop(context);
+
+                });
                 },
 
 
