@@ -20,8 +20,7 @@ async{
 
   WeatherModel weatherModel = WeatherModel.fromJson(JsonforCastData,jsonCurrentData);
 
-var loctime = JsonforCastData["hour"][0]["time"];
-  print ("loc time is $loctime ");
+
   return weatherModel;
 
 }

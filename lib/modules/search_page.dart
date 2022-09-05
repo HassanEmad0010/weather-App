@@ -69,11 +69,9 @@ class SearchPage extends StatelessWidget {
                   if (textFormKey.currentState!.validate()) {
                     WeatherCubit.get(context).getWeather(cityName: value).then((
                         value) {
-                      //Navigator.pop(context);
                     }).catchError((e) {
                       print(" _____from search error $e");
                       WeatherCubit.get(context).failedWeather();
-                      //Navigator.pop(context);
                     });
                   }
 

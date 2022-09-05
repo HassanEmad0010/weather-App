@@ -19,11 +19,11 @@ class WeatherModel{
  factory  WeatherModel.fromJson(dynamic json,dynamic jsonCurrent)
   {
     var jsonDayData = json["day"];
-    var jsonCurrentData= jsonCurrent["last_updated"];
+   // var jsonCurrentData= jsonCurrent["last_updated"];
 
 return WeatherModel(
-    date: jsonCurrentData= jsonCurrent["last_updated"],
-    temp:jsonCurrentData= jsonCurrent["temp_c"],
+    date: jsonCurrent["last_updated"],
+    temp: jsonCurrent["temp_c"],
     maxTemp: jsonDayData["maxtemp_c"],
   minTemp: jsonDayData["mintemp_c"],
   weatherStateName: jsonDayData["condition"]["text"],

@@ -28,8 +28,6 @@ class WeatherCubit extends Cubit<WeatherState> {
 
         print ("weather from Cubit page ${weather.toString()} ");
 
-
-        try {
           minTemp = weather.minTemp;
           maxTemp= weather.maxTemp;
           temp = weather.temp;
@@ -43,11 +41,7 @@ class WeatherCubit extends Cubit<WeatherState> {
           print ("min temp is  $temp ");
           print ("temp is $minTemp");
           print ("state is  $weatherState");
-        } on Exception catch (e) {
-         /* print("failed from cubit");
-          emit(WeatherFailedState());*/
 
-        }
 
   }
 
