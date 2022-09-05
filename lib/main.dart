@@ -9,8 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   Bloc.observer = SimpleBlocObserver();
 
-  runApp( MyApp());
-
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -20,15 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<WeatherCubit>(
-
-      create: (BuildContext context) {  return WeatherCubit();},
+      create: (BuildContext context) {
+        return WeatherCubit();
+      },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-
-
         title: 'Flutter Demo',
         theme: ThemeData(
-
           primarySwatch: Colors.blue,
         ),
         home: HomeScreen(),

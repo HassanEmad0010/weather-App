@@ -39,4 +39,3 @@ class SimpleBlocObserver extends BlocObserver {
     print('onClose -- bloc: ${bloc.runtimeType}');
   }
 }
-

@@ -6,54 +6,40 @@ import '../../componants/shared_componant/componant.dart';
 import 'Weather_state.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {
+  WeatherCubit() : super(WeatherInitState());
 
-  WeatherCubit():super(WeatherInitState());
+  static WeatherCubit get(context) => BlocProvider.of(context);
 
- static WeatherCubit get (context)=>BlocProvider.of(context);
-
+/*
   String? date;
   double? temp;
   double? maxTemp;
   double? minTemp;
-  String? weatherState;
+  String? weatherState;*/
 
   WeatherModel? weather;
   String? cityNameCubit;
 
-  Future<void> getWeather ({required cityName}) async{
+  Future<void> getWeather({required cityName}) async {
     emit(WeatherLoadingState());
 
+    await weatherService(cityName).then((value) {
+      emit(WeatherGetState());
 
-     await  weatherService(cityName).then((value) {
-       emit(WeatherGetState());
-
-       return weather;
-
-     }).catchError((e){ print("error from cubit is ${e.toString()} ");
-     emit(WeatherFailedState());
-     });
-
-
-
-
-
-
+      weather = value;
+    }).catchError((e) {
+      print("error from cubit is ${e.toString()} ");
+      emit(WeatherFailedState());
+    });
   }
 
-
-  void loadWeather ()
-  {
+  void loadWeather() {
     print("failed from cubit");
     emit(WeatherLoadingState());
   }
 
-  void failedWeather ()
-  {
+  void failedWeather() {
     print("failed from cubit");
     emit(WeatherFailedState());
   }
-
-
-
-
 }
