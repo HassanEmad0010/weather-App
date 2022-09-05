@@ -11,17 +11,15 @@ async{
   //var url = Uri.https('api.weatherapi.com', 'v1/current.json', {    'key': '{e5bd00e528e346ff8a840254213009}' , 'q': '{Cairo}'       },);
   var url = Uri.parse("http://api.weatherapi.com/v1/forecast.json?key=e5bd00e528e346ff8a840254213009&q=$city");
   var  responce = await  http.get(url);
-  Map<String,dynamic> jsonData= jsonDecode(responce.body) ;
-
-  //var localTime = jsonData["location"]["localtime"];
-   // print("response localTime is $localTime ");
- // var jsonFinaldata = jsonData ["forecast"]["forecastday"][0]["day"];
+  Map<String,dynamic> jsonData=await jsonDecode(responce.body) ;
+  print ("city is $city");
+   print("_____ json data from componant is $jsonData ");
 
   var jsonFinaldata1 = jsonData ["forecast"]["forecastday"][0];
-
-
   WeatherModel weatherModel = WeatherModel.fromJson(jsonFinaldata1);
+  return weatherModel;
 
+}
 
 
 
@@ -37,14 +35,5 @@ async{
 
 
 
- // print("response date is $temp ");
-
-    print ("city is $city");
-
-return weatherModel;
-}
-
-
-
-
+// print("response date is $temp ");
 

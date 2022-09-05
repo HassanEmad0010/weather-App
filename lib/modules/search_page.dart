@@ -80,7 +80,7 @@ class SearchPage extends StatelessWidget {
                         value) {
                       Navigator.pop(context);
                     }).catchError((e) {
-                      print("error $e");
+                      print(" _____from search error $e");
                     });
                   }
 
