@@ -43,26 +43,16 @@ class WeatherCubit extends Cubit<WeatherState> {
           print ("temp is $minTemp");
           print ("state is  $weatherState");
         } on Exception catch (e) {
-          print("failed from cubit");
-          emit(WeatherFailedState());
+         /* print("failed from cubit");
+          emit(WeatherFailedState());*/
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+  void failedWeather ()
+  {
+    print("failed from cubit");
+    emit(WeatherFailedState());
   }
 
 

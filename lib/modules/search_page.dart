@@ -57,21 +57,11 @@ class SearchPage extends StatelessWidget {
                         color: Colors.yellowAccent,
                       ),
                     ),
+                      prefixIconColor: Colors.indigo,
+                      prefixIcon: Icon(Icons.search_sharp)
                     //fillColor: Colors.green
                   ),
 
-               /* decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: Colors.indigo,
-                    ),
-                  ),
-                  prefixIconColor: Colors.indigo,
-                  fillColor: Colors.white60,
-                  prefixIcon: Icon(Icons.search_sharp),
-
-                ),*/
 
                 onFieldSubmitted: (value) {
                   //await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
@@ -81,6 +71,8 @@ class SearchPage extends StatelessWidget {
                       Navigator.pop(context);
                     }).catchError((e) {
                       print(" _____from search error $e");
+                      WeatherCubit.get(context).failedWeather();
+                      Navigator.pop(context);
                     });
                   }
 

@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         BlocBuilder<WeatherCubit,WeatherState>(
           builder: (conwdtext,state) {
            if(state is WeatherFailedState) {
-             return Container(color: Colors.cyan, child: const Text("Error No data"),);
+             return Container(color: Colors.cyan, child: Center(child: const Text("Something went wrong \n Please search Again",style: TextStyle(fontSize: 20),)),);
            }
            else if (state is WeatherGetState)
              {
