@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         BlocBuilder<WeatherCubit,WeatherState>(
           builder: (conwdtext,state) {
            if(state is WeatherFailedState) {
-             return Container(color: Colors.cyan, child: Center(child: const Text("Something went wrong \n Please search Again",style: TextStyle(fontSize: 20),)),);
+             return Container(color: Colors.cyan, child: const Center(child: Text("Something went wrong \n Please search Again",style: TextStyle(fontSize: 20),)),);
            }
            else if (state is WeatherGetState)
              {
@@ -52,24 +52,26 @@ class HomeScreen extends StatelessWidget {
                        "${cubit.cityName}",
                        style:const TextStyle(fontSize: 40),
                      ),
-                     Text("${cubit.temp}", style: TextStyle(fontSize: 40)),
-
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         const Text("Updated: ", style: TextStyle(fontSize: 20)),
-                         Text("${cubit.date}", style: TextStyle(fontSize: 20)),
-                       ],
+                     Text("${cubit.temp}", style:const TextStyle(fontSize: 40)),
+                     const Icon(
+                       Icons.cloud_outlined,
+                       size: 80,
                      ),
                      Row(
                        mainAxisAlignment: MainAxisAlignment.center,
                        children: [
-                         const Icon(
-                           Icons.cloud_outlined,
-                           size: 80,
-                         ),
-                         Text("  ${cubit.minTemp} - ", style: TextStyle(fontSize: 30)),
-                         Text("${cubit.maxTemp}", style: TextStyle(fontSize: 40)),
+                         const Text("Today: ", style: TextStyle(fontSize: 27)),
+                         Text("${cubit.date}", style:const TextStyle(fontSize: 27)),
+                       ],
+                     ),
+                     const Text("Updated : ", style: TextStyle(fontSize: 27)),
+                     Text("${cubit.date}", style:const TextStyle(fontSize: 27)),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+
+                         Text("   Min: ${cubit.minTemp} - ", style: TextStyle(fontSize: 20)),
+                         Text(" Max: ${cubit.maxTemp}", style: TextStyle(fontSize: 20)),
                        ],
                      ),
                      Text("${cubit.weatherState}", style: TextStyle(fontSize: 40)),

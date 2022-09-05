@@ -16,16 +16,17 @@ class WeatherModel{
   WeatherModel(  {required this.date, required this.temp,required this.maxTemp,required this.minTemp,required this.weatherStateName});
 
 
- factory  WeatherModel.fromJson(dynamic json)
+ factory  WeatherModel.fromJson(dynamic json,dynamic jsonCurrent)
   {
-    var jsonFinaldata = json["day"];
+    var jsonDayData = json["day"];
+    var jsonCurrentData= jsonCurrent["last_updated"];
 
 return WeatherModel(
-    date: json["date"],
-    temp:jsonFinaldata["maxtemp_c"] ,
-    maxTemp: jsonFinaldata["maxtemp_c"],
-  minTemp: jsonFinaldata["mintemp_c"],
-  weatherStateName: jsonFinaldata["condition"]["text"],
+    date: jsonCurrentData= jsonCurrent["last_updated"],
+    temp:jsonCurrentData= jsonCurrent["temp_c"],
+    maxTemp: jsonDayData["maxtemp_c"],
+  minTemp: jsonDayData["mintemp_c"],
+  weatherStateName: jsonDayData["condition"]["text"],
 );
   }
 

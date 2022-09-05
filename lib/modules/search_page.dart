@@ -64,15 +64,16 @@ class SearchPage extends StatelessWidget {
 
 
                 onFieldSubmitted: (value) {
+                  Navigator.pop(context);
                   //await BlocProvider.of<WeatherCubit>(context).getWeather(cityName: value);
                   if (textFormKey.currentState!.validate()) {
                     WeatherCubit.get(context).getWeather(cityName: value).then((
                         value) {
-                      Navigator.pop(context);
+                      //Navigator.pop(context);
                     }).catchError((e) {
                       print(" _____from search error $e");
                       WeatherCubit.get(context).failedWeather();
-                      Navigator.pop(context);
+                      //Navigator.pop(context);
                     });
                   }
 

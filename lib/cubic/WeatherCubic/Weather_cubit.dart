@@ -24,7 +24,8 @@ class WeatherCubit extends Cubit<WeatherState> {
     WeatherModel weather =await  weatherService(cityName);
 
         emit(WeatherLoadingState());
-        //Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
+
         print ("weather from Cubit page ${weather.toString()} ");
 
 
@@ -49,6 +50,14 @@ class WeatherCubit extends Cubit<WeatherState> {
         }
 
   }
+
+
+  void loadWeather ()
+  {
+    print("failed from cubit");
+    emit(WeatherLoadingState());
+  }
+
   void failedWeather ()
   {
     print("failed from cubit");

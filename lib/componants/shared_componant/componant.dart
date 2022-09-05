@@ -14,9 +14,14 @@ async{
   Map<String,dynamic> jsonData=await jsonDecode(responce.body) ;
   print ("city is $city");
    print("_____ json data from componant is $jsonData ");
+  var JsonforCastData = jsonData ["forecast"]["forecastday"][0];
+  var jsonCurrentData= jsonData["current"];
 
-  var jsonFinaldata1 = jsonData ["forecast"]["forecastday"][0];
-  WeatherModel weatherModel = WeatherModel.fromJson(jsonFinaldata1);
+
+  WeatherModel weatherModel = WeatherModel.fromJson(JsonforCastData,jsonCurrentData);
+
+var loctime = JsonforCastData["hour"][0]["time"];
+  print ("loc time is $loctime ");
   return weatherModel;
 
 }
