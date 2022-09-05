@@ -49,32 +49,26 @@ class HomeScreen extends StatelessWidget {
                    //  mainAxisAlignment: MainAxisAlignment.center,
                    children: [
                      Text(
-                       "${cubit.cityName}",
+                       "${cubit.cityNameCubit}",
                        style:const TextStyle(fontSize: 40),
                      ),
-                     Text("${cubit.temp}", style:const TextStyle(fontSize: 40)),
+                     Text("${cubit.weather?.temp}", style:const TextStyle(fontSize: 40)),
                      const Icon(
                        Icons.cloud_outlined,
                        size: 80,
                      ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         const Text("Today: ", style: TextStyle(fontSize: 27)),
-                         Text("${cubit.date}", style:const TextStyle(fontSize: 27)),
-                       ],
-                     ),
+
                      const Text("Updated : ", style: TextStyle(fontSize: 27)),
-                     Text("${cubit.date}", style:const TextStyle(fontSize: 27)),
+                     Text("${cubit.weather?.date}", style:const TextStyle(fontSize: 27)),
                      Row(
                        mainAxisAlignment: MainAxisAlignment.center,
                        children: [
 
-                         Text("   Min: ${cubit.minTemp} - ", style: TextStyle(fontSize: 20)),
-                         Text(" Max: ${cubit.maxTemp}", style: TextStyle(fontSize: 20)),
+                         Text("   Min: ${cubit.weather?.minTemp} - ", style: TextStyle(fontSize: 20)),
+                         Text(" Max: ${cubit.weather?.maxTemp}", style: TextStyle(fontSize: 20)),
                        ],
                      ),
-                     Text("${cubit.weatherState}", style: TextStyle(fontSize: 40)),
+                     Text("${cubit.weather?.weatherStateName}", style: TextStyle(fontSize: 40)),
                    ],
                  ),
                );

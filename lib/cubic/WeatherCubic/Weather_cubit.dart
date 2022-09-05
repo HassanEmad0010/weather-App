@@ -16,31 +16,26 @@ class WeatherCubit extends Cubit<WeatherState> {
   double? maxTemp;
   double? minTemp;
   String? weatherState;
-  String? cityName;
 
-
+  WeatherModel? weather;
+  String? cityNameCubit;
 
   Future<void> getWeather ({required cityName}) async{
-    WeatherModel weather =await  weatherService(cityName);
+    emit(WeatherLoadingState());
 
-        emit(WeatherLoadingState());
-      // await Future.delayed(const Duration(seconds: 2));
 
-        print ("weather from Cubit page ${weather.toString()} ");
+     await  weatherService(cityName).then((value) {
+       emit(WeatherGetState());
 
-          minTemp = weather.minTemp;
-          maxTemp= weather.maxTemp;
-          temp = weather.temp;
-          date= weather.date;
-          weatherState= weather.weatherStateName;
-          this.cityName=cityName;
-          emit(WeatherGetState());
+       return weather;
 
-          print ("date is $date");
-          print ("max temp is $maxTemp ");
-          print ("min temp is  $temp ");
-          print ("temp is $minTemp");
-          print ("state is  $weatherState");
+     }).catchError((e){ print("error from cubit is ${e.toString()} ");
+     emit(WeatherFailedState());
+     });
+
+
+
+
 
 
   }
