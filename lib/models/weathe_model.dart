@@ -16,7 +16,6 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(dynamic json, dynamic jsonCurrent) {
     var jsonDayData = json["day"];
-    // var jsonCurrentData= jsonCurrent["last_updated"];
 
     return WeatherModel(
       date: jsonCurrent["last_updated"],
@@ -27,13 +26,7 @@ class WeatherModel {
     );
   }
 
-  factory WeatherModel.fromJsonError(dynamic json) {
-    //  var jsonDayData = json["day"];
-    // var jsonCurrentData= jsonCurrent["last_updated"];
 
-    return WeatherModel(
-        date: "10", temp: 10, maxTemp: 10, minTemp: 10, weatherStateName: "10");
-  }
 
   @override
   String toString() {

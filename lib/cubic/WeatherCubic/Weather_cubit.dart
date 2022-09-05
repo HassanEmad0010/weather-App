@@ -10,15 +10,11 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   static WeatherCubit get(context) => BlocProvider.of(context);
 
-/*
-  String? date;
-  double? temp;
-  double? maxTemp;
-  double? minTemp;
-  String? weatherState;*/
+
 
   WeatherModel? weather;
   String? cityNameCubit;
+
 
   Future<void> getWeather({required cityName}) async {
     emit(WeatherLoadingState());
@@ -28,6 +24,7 @@ class WeatherCubit extends Cubit<WeatherState> {
 
       weather = value;
     }).catchError((e) {
+
       print("error from cubit is ${e.toString()} ");
       emit(WeatherFailedState());
     });

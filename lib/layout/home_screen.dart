@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             color: Colors.cyan,
             child: const Center(
                 child: Text(
-              "Something went wrong \n Please search Again",
+              "Something went wrong \n  Please search Again",
               style: TextStyle(fontSize: 20),
             )),
           );
