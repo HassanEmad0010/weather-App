@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (coegntext) {
+                  builder: (context) {
                     return SearchPage();
                   },
                 ),
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (coegntext) {
+                          builder: (context) {
                             return SearchPage();
                           },
                         ),
