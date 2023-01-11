@@ -18,3 +18,6 @@ Future<WeatherModel> weatherService(String city) async {
       WeatherModel.fromJson(JsonforCastData, jsonCurrentData);
    return weatherModel;
 }
+
+
+

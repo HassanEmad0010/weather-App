@@ -7,9 +7,9 @@ import 'layout/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  Bloc.observer = SimpleBlocObserver();
+ // Bloc.observer = SimpleBlocObserver();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,12 +23,13 @@ class MyApp extends StatelessWidget {
         return WeatherCubit();
       },
       child: MaterialApp(
+
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.cyan,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

@@ -26,32 +26,52 @@ class SuccessWeatherWidget extends StatelessWidget {
             "${cubit.cityNameCubit}",
             style: const TextStyle(fontSize: 40),
           ),
-          Text("${cubit.weather?.temp}", style: const TextStyle(fontSize: 40)),
-          const Icon(
-            Icons.cloud_outlined,
-            size: 80,
-          ),
-          const Text("Updated: ", style: TextStyle(fontSize: 23)),
-          Text("${weatherModel?.date}", style: const TextStyle(fontSize: 27)),
-          const SizedBox(
-            height: 9,
-          ),
+          Text("${cubit.weather?.temp.round()} ", style: const TextStyle(fontSize: 40)),
+
+          Image.asset(cubit.getAssetImage()),
+
+
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("   Min: ${cubit.weather?.minTemp} - ",
-                  style: TextStyle(fontSize: 20)),
-              Text(" Max: ${cubit.weather?.maxTemp}",
-                  style: TextStyle(fontSize: 20)),
+              Text("   Min: ${cubit.weather?.minTemp.round()} - ",
+                  style: const TextStyle(fontSize: 20)),
+              Text(" Max: ${cubit.weather?.maxTemp.round()}",
+                  style: const TextStyle(fontSize: 20)),
             ],
           ),
-          const SizedBox(
-            height: 13,
-          ),
+
           Text("${cubit.weather?.weatherStateName}",
-              style: TextStyle(fontSize: 40)),
+              style: TextStyle(fontSize: 30)),
+
+          const Text("Last Updated: ", style: TextStyle(fontSize: 23)),
+          Text("${weatherModel?.date}", style: const TextStyle(fontSize: 27)),
         ],
       ),
     );
   }
+
 }
+/*  String getAssetImage()
+  {
+    if(cubit.weather?.weatherStateName=="Sunny")
+      return "assets/images/clear.png";
+
+    else if(cubit.weather?.weatherStateName=="Moderate rain")
+      return"assets/images/rainy.png";
+
+    else if(cubit.weather?.weatherStateName=="Patchy light rain with thunder")
+      return"assets/images/thunderstorm.png";
+
+    else if(cubit.weather?.weatherStateName=="Patchy rain possible")
+      return"assets/images/thunderstorm.png";
+
+    else if(cubit.weather?.weatherStateName=="Thundery outbreaks possible")
+      return"assets/images/thunderstorm.png";
+    else
+      return "assets/images/clear.png";
+
+}*/
+
+

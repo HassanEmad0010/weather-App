@@ -6,6 +6,7 @@ class WeatherModel {
   double maxTemp;
   double minTemp;
   String weatherStateName;
+  String? iconString;
 
   WeatherModel(
       {required this.date,
@@ -23,6 +24,7 @@ class WeatherModel {
       maxTemp: jsonDayData["maxtemp_c"],
       minTemp: jsonDayData["mintemp_c"],
       weatherStateName: jsonDayData["condition"]["text"],
+
     );
   }
 
