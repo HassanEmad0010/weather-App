@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/componants/shared_componant/MediaQuery.dart';
 import 'package:weather_app/cubic/WeatherCubic/Weather_cubit.dart';
 import 'package:weather_app/cubic/WeatherCubic/Weather_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,14 +12,23 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery= MediaQuery.of(context);
+
+    double _maxHeight=getHeightByMediaQuery(mediaQuery);
+    double _maxWidth= getWidthByMediaQuery(mediaQuery);
+    double _iconSize= getIconSizeByMediaQuery(mediaQuery);
+    double _textFontSize = getTextSizeByMediaQuery(mediaQuery);
+
+
     return BlocConsumer<WeatherCubit, WeatherState>(
       listener: (context, state) {},
       builder: (context, state) => Scaffold(
         backgroundColor: Colors.lightBlue,
         appBar: AppBar(
-          title: const Text(
+          title:  Text(
             "Wootor",
-            style: TextStyle(letterSpacing: 10,color: Colors.lightGreenAccent,fontSize: 25),
+            style: TextStyle(letterSpacing: 10,color: Colors.lightGreenAccent,
+                fontSize: _textFontSize/1.1),
           ),
           centerTitle: true,
           titleSpacing: 3,
@@ -30,35 +40,37 @@ class SearchPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                const Text(
-                  "Enter a City",
+                 Text(
+                  "Enter your City",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: _textFontSize,
                       color: Colors.white60,
                       wordSpacing: 4,
                       fontWeight: FontWeight.bold),
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.all(40.0),
+                  padding:  EdgeInsets.all(_maxWidth/20),
                   child: Form(
                     key: textFormKey,
                     child: TextFormField(
                         controller: textEditingController,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "City Name Can't be empty";
+                            return "City Name Can't be empty!";
                           }
                           return null;
                         },
                         decoration: InputDecoration(
+
                             labelText: "City Name",
                             fillColor: Colors.white,
+                            suffixIcon:const Icon(Icons.location_city),
                             border: OutlineInputBorder(
-                              gapPadding: 10,
-                              borderRadius: BorderRadius.circular(70.0),
-                              borderSide: const BorderSide(
-                                width: 70,
+                              gapPadding: _maxWidth/30,
+                              borderRadius: BorderRadius.circular(_maxWidth),
+                              borderSide:  BorderSide(
+                                width: _maxWidth,
                                 color: Colors.yellowAccent,
                               ),
                             ),

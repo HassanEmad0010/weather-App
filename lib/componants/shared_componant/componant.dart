@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -20,4 +21,15 @@ Future<WeatherModel> weatherService(String city) async {
 }
 
 
+TextStyle weatherTextStyle({required double fontsize, Color color=Colors.yellowAccent})=>  TextStyle(fontSize: fontsize/1.3,color: color);
 
+
+SizedBox sizedBoxSeparator (
+{
+  double width=0,
+  double height =0,
+}
+    )=> SizedBox(
+  height: height,
+  width: width,
+);

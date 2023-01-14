@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/cubic/WeatherCubic/Weather_cubit.dart';
 import 'package:weather_app/cubic/WeatherCubic/Weather_state.dart';
 import 'package:weather_app/models/weathe_model.dart';
+import '../componants/shared_componant/MediaQuery.dart';
 import '../modules/SuccessfulBody.dart';
 import '../modules/search_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WeatherCubit cubit = WeatherCubit.get(context);
+    var mediaQuery= MediaQuery.of(context);
 
     return Scaffold(
       backgroundColor: Colors.teal,
@@ -44,13 +46,13 @@ class HomeScreen extends StatelessWidget {
           
           BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
         if (state is WeatherFailedState) {
-          return const Center(
+          return  Center(
             child:  SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child:  Center(
                   child: Text(
                 " Something went wrong \n Please Search Again",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: getTextSizeByMediaQuery(mediaQuery)/1.5),
               )),
             ),
           );
@@ -70,7 +72,8 @@ class HomeScreen extends StatelessWidget {
                   semanticsLabel: "loading......",
                     strokeWidth: 5, color: Colors.blueAccent)),
           );
-        } else {
+        }
+        else {
           return Scaffold(
             backgroundColor: Colors.teal,
             body: Center(
@@ -78,15 +81,15 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   child: Column(
                   children: [
-                  const Text(
+                   Text(
                     "      No Data 😑 \n \n Search for a City ",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: getTextSizeByMediaQuery(mediaQuery),
                         color: Colors.white),
                   ),
                   IconButton(
-                    iconSize: 90,
+                    iconSize: getIconSizeByMediaQuery(mediaQuery),
                     color: Colors.yellowAccent,
                     onPressed: () {
                       Navigator.push(

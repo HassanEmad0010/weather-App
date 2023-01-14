@@ -47,19 +47,28 @@ class WeatherCubit extends Cubit<WeatherState> {
 
 String getAssetImage()
 {
-  if(weather?.weatherStateName=="Sunny") {
-    return "assets/images/clear.png";
-  } else if(weather?.weatherStateName=="Moderate rain") {
-    return"assets/images/rainy.png";
-  } else if(weather?.weatherStateName=="Patchy light rain with thunder") {
-    return"assets/images/thunderstorm.png";
-  } else if(weather?.weatherStateName=="Patchy rain possible") {
-    return"assets/images/thunderstorm.png";
-  } else if(weather?.weatherStateName=="Thundery outbreaks possible") {
-    return"assets/images/thunderstorm.png";
-  } else {
-    return "assets/images/clear.png";
-  }
+
+      if(weather!.weatherStateName.contains("Sunny")) {
+        return "assets/images/clear.png";
+      } else if(weather!.weatherStateName.contains("rain")) {
+        return"assets/images/rainy.png";
+      } else if(weather!.weatherStateName.contains("thunder")) {
+        return"assets/images/thunderstorm.png";
+      } else if(weather!.weatherStateName.contains("Patchy")) {
+        return"assets/images/thunderstorm.png";
+      } else if(weather!.weatherStateName.contains("outbreaks")) {
+        return"assets/images/thunderstorm.png";
+      } else if(weather!.weatherStateName.contains("cloudy")) {
+        return"assets/images/cloudy.png";
+      }
+      else if(weather!.weatherStateName.contains("snow")) {
+        return"assets/images/snow.png";
+
+      }else {
+        return "assets/images/clear.png";
+      }
+
+
 
 }
 
